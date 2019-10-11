@@ -1,4 +1,8 @@
 package com.nowak.dao;
 
-public class AuthorityDao {
+import com.nowak.db_entities.Authority;
+
+public interface AuthorityDao {
+
+    Authority findAuthority(String authority);
 }

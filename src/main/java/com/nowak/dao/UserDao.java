@@ -1,4 +1,9 @@
 package com.nowak.dao;
 
-public class UserDao {
+import com.nowak.db_entities.User;
+
+public interface UserDao{
+
+    void addUser(User user);
+    User findUser(String username);
 }
