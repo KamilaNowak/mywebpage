@@ -15,4 +15,13 @@ public class MainController {
     public String showCpus(){
         return "cpu-page";
     }
+
+    @RequestMapping("/login")
+    public String showLoginPage(){
+        return "login-page";
+    }
+    @RequestMapping("/register")
+    public String showRegisterationPage(){
+        return "register-page";
+    }
 }

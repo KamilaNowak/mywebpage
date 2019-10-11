@@ -11,8 +11,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
-
 </head>
 
 <body>
@@ -25,7 +23,7 @@
     </div>
 </div>
 <hr>
-</div>
+
 <div class="card bg-light" style="margin-left:600px; margin-right:600px; margin-bottom:20px; margin-top:20px">
     <article class="card-body mx-auto" style="max-width: 400px">
         <h3 class="card-title mt-3 text-center">Zarejestruj się</h3>
