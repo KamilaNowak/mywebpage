@@ -11,7 +11,7 @@ public class Authority {
     @Column(name="id")
     private int id;
 
-    @Column(name="authorities")
+    @Column(name="authority")
     private String authority;
 
     public Authority() {

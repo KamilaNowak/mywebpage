@@ -11,17 +11,18 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.sql.DataSource;
-import javax.xml.ws.Action;
 import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
+@EnableTransactionManagement
 @ComponentScan(basePackages = "com.nowak")
 @PropertySource("classpath:sql_starter.properties")
 public class Configs {
@@ -38,7 +39,7 @@ public class Configs {
     }
 
     @Bean
-    DataSource dataSource() throws PropertyVetoException {
+    public DataSource comboDataSource() throws PropertyVetoException {
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
 
         comboPooledDataSource.setDriverClass(environment.getProperty("jdbc.driver"));
@@ -46,43 +47,42 @@ public class Configs {
         comboPooledDataSource.setUser(environment.getProperty("jdbc.username"));
         comboPooledDataSource.setPassword(environment.getProperty("jdbc.password"));
 
-        comboPooledDataSource.setMinPoolSize(parseToInteger(environment.getProperty("connectionPool.minPoolSize")));
-        comboPooledDataSource.setMaxPoolSize(parseToInteger(environment.getProperty("connectionPool.maxPoolSize")));
-        comboPooledDataSource.setMaxIdleTime(parseToInteger(environment.getProperty("connectionPool.maxIdleTime")));
-        comboPooledDataSource.setInitialPoolSize(parseToInteger(environment.getProperty("connectionPool.initialPoolSize")));
+        comboPooledDataSource.setMinPoolSize(parseToInteger("connectionPool.minPoolSize"));
+        comboPooledDataSource.setMaxPoolSize(parseToInteger("connectionPool.maxPoolSize"));
+        comboPooledDataSource.setMaxIdleTime(parseToInteger("connectionPool.maxIdleTime"));
+        comboPooledDataSource.setInitialPoolSize(parseToInteger("connectionPool.initialPoolSize"));
         return comboPooledDataSource;
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory(){
-        LocalSessionFactoryBean localSessionFactoryBean=new LocalSessionFactoryBean();
+    public LocalSessionFactoryBean sessionFactory() throws PropertyVetoException {
+        LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
         localSessionFactoryBean.setHibernateProperties(getHibernateProperties());
         localSessionFactoryBean.setPackagesToScan(environment.getProperty("hibernate.packagesToScan"));
-        try {
-            localSessionFactoryBean.setDataSource(dataSource());
-        } catch (PropertyVetoException e) {
-            e.printStackTrace();
-        }
+        localSessionFactoryBean.setDataSource(comboDataSource());
         return localSessionFactoryBean;
     }
-    Properties getHibernateProperties(){
+
+    Properties getHibernateProperties() {
         Properties hbProperties = new Properties();
-        hbProperties.setProperty("hibernate.dialect",environment.getProperty("hibernate.dialect"));
-        hbProperties.setProperty("hibernate.show_sql",environment.getProperty("hibernate.show_sql"));
-        hbProperties.setProperty("hibernate.default_schema",environment.getProperty("hibernate.default_schema"));
-        hbProperties.setProperty("hibernate.packagesToScan",environment.getProperty("hibernate.packagesToScan"));
+        hbProperties.setProperty("hibernate.dialect", environment.getProperty("hibernate.dialect"));
+        hbProperties.setProperty("hibernate.show_sql", environment.getProperty("hibernate.show_sql"));
+        hbProperties.setProperty("hibernate.default_schema", environment.getProperty("hibernate.default_schema"));
+        hbProperties.setProperty("hibernate.packagesToScan", environment.getProperty("hibernate.packagesToScan"));
         return hbProperties;
     }
-    @Bean
+
     @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory){
+    @Bean(name ="transactionManager")
+    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
         HibernateTransactionManager hibernateTransactionManager = new HibernateTransactionManager();
         hibernateTransactionManager.setSessionFactory(sessionFactory);
         return hibernateTransactionManager;
     }
-    public int parseToInteger(String property){
-        property=environment.getProperty(property);
-        int value= Integer.parseInt(property);
+
+    public int parseToInteger(String property) {
+        property = environment.getProperty(property);
+        int value = Integer.parseInt(property);
         return value;
     }
 }

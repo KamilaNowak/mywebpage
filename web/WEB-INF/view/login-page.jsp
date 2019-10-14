@@ -1,8 +1,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page language="Java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <title>Register</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,20 +42,33 @@
             <p>Jeśli nie masz jeszcze - konta kliknij przycisk  <span class="badge badge-primary">Zarejestruj</span>
         </div>
         <hr>
+        <div class="form-group">
+            <div class="col-sm-10 text-center">
+                <div class="validMessage">
+                    <c:if test="${param.error!=null}">
 
-        <form:form action="${pageContext.request.contextPath}/login" method="post" class="form-horizontal">
+                        <div class="alert alert-danger col-sm-10">
+                            <i class="	far fa-frown"> Invalid username or password!</i>
+                        </div>
+
+                    </c:if>
+                </div>
+            </div>
+        </div>
+        <form:form action="${pageContext.request.contextPath}/loginProceed" method="post" class="form-horizontal">
             <div class="form-group input-group">
                 <span class="input-group-text"><i class="fa fa-user"></i></span>
-                <form:input path="username" class="form-control"/>
+                <input type="text" name="username" class="form-control"/>
             </div>
             <br>
             <div class="form-group input-group">
                 <span class="input-group-text"><i class="fa fa-eye-slash"></i></span>
-                <form:input path="password" class="form-control"/>
+                <input type="password" name="password" class="form-control"/>
             </div>
             <br>
             <button type="submit" class="btn btn-outline-success" style="margin-left:350px">Zaloguj</button>
-            <p><button type="button" class="btn btn-primary" style="margin-left:0px">Zarejestruj</button></p>
+            <a href ="${pageContext.request.contextPath}/register" class="btn btn-primary" style="margin-left:0px">Zarejestruj</a>
+            <a href="${pageContext.request.contextPath}/ " class="btn btn-info" style="margin-left:10px;color:white"  >Strona główna</a>
         </form:form>
     </article>
 </div>
@@ -61,7 +76,7 @@
 <footer>
     <div class="footer">
         <div class="row text-center">
-            <div class="col-12" style="margin-top:15px; margin-bottom:15px">
+            <div class="col-12" style="margin-bottom:0px">
                 <h4>&copy;PC-Configurer.pl</h4>
             </div>
         </div>

@@ -1,9 +1,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page language="Java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <title>PC-Configurer</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,7 +48,7 @@
         <div id="menu_bar" class="collapse navbar-collapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Procesory</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/cpu">Procesory</a>
                 </li>
 
                 <li class="nav-item">
@@ -89,7 +90,7 @@
         <h1 style="color:white">Informator podzespołów komputera</h1>
         <p style="color:white">Poczytaj, o każdej z części twojej przyszłej jednostki</p>
         <p style="color:white">Po zalogowaniu masz możliwość zrobienie zamówienia na profesjonalne składanie PC</p>
-        <a href="#" class="btn btn-outline-light">Zaloguj się</a>
+        <a href="${pageContext.request.contextPath}/login" class="btn btn-outline-light">Zaloguj się</a>
     </div>
 
 </header>
@@ -138,7 +139,7 @@
                 <h1>Jak to działa?</h1>
                 <span class="badge badge-primary">1. Opcja</span>
                 <p>W formularzu wypełniasz odpowiednie pola wpisując podzespoły, które wybrałeś. Resztą zajmuję się ja.
-                    Zamawiam części z najlepszych sklepów za możliwiwe najniszą cenę. Składam komputer dokłądnie,dbając
+                    Zamawiam części z najlepszych sklepów za możliwiwe najniszą cenę. Składam komputer dokładnie, dbając
                     o cable-management. Następnie kontaktuję się z klientem w sprawie odbioru jednostki</p>
                 <button type="button" class="btn btn-outline-primary">Wypełnij formularz</button>
                 <br><br>
