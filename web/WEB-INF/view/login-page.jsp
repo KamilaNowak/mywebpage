@@ -15,10 +15,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
     <style>
-        .footer
-        {
-            background-color:#808080;
-        }
     </style>
 </head>
 
@@ -73,13 +69,4 @@
     </article>
 </div>
 
-<footer>
-    <div class="footer">
-        <div class="row text-center">
-            <div class="col-12" style="margin-bottom:0px">
-                <h4>&copy;PC-Configurer.pl</h4>
-            </div>
-        </div>
-    </div>
-</footer>
 </body>

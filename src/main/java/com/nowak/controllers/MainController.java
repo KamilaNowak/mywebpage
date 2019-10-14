@@ -63,4 +63,14 @@ public class MainController {
         userDetailsService.addUser(validationUser);
         return "register-page";
     }
+
+    @RequestMapping("/adminManager")
+    public String showAdminPage(){
+        return "admin-page";
+    }
+    @RequestMapping("/accessDenied")
+    public String showErrorPage(){
+        return "error-page";
+    }
+
 }

@@ -28,7 +28,7 @@
         }
 
         .footer {
-            background-color: #808080;
+            background-color: #d9d9d9;
             color: black;
             padding-top: 2rem;
         }
@@ -37,8 +37,8 @@
 </head>
 <body>
 <header>
-    <nav class="navbar 	 navbar-dark navbar-expand-lg" style="background-color: #808080">
-        <a class="navbar-brand" href="#"><img src="" width="50" height="50" alt=""
+    <nav class="navbar 	 navbar-dark navbar-expand-lg" style="background-color: #a6a6a6">
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/ "><img src="" width="50" height="50" alt=""
                                               class="d-inline-block mr-1">PC-Configurer.pl</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu_bar"
@@ -180,6 +180,7 @@
             <div class="row text-center">
                 <div class="col-12">
                     <h4>&copy; PC-Configurer.pl | 2019</h4>
+                    <a href="${pageContext.request.contextPath}/adminManager">Admin Panel</a>
                 </div>
             </div>
         </div>
