@@ -39,7 +39,7 @@
                 <p> <span class="input-group-text"><i class="fa fa-user"> <security:authentication property="principal.username"/></i></span></p>
                 <hr>
                 <h2>Role</h2>
-                <p><span class="input-group-text"><i class="fa fa-align-left"> <securityLauthentication property="principal.authorities"/></i></span></p>
+                <p><span class="input-group-text"><i class="fa fa-align-left"> <security:authentication property="principal.authorities"/></i></span></p>
                 <hr>
             </div>
         </div>

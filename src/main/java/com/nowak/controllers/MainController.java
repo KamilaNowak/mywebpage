@@ -73,4 +73,9 @@ public class MainController {
         return "error-page";
     }
 
+    @RequestMapping("/contactForm")
+    public String showContactForm(){
+        return"form-page";
+    }
+
 }

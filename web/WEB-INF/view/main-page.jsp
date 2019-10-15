@@ -141,7 +141,7 @@
                 <p>W formularzu wypełniasz odpowiednie pola wpisując podzespoły, które wybrałeś. Resztą zajmuję się ja.
                     Zamawiam części z najlepszych sklepów za możliwiwe najniszą cenę. Składam komputer dokładnie, dbając
                     o cable-management. Następnie kontaktuję się z klientem w sprawie odbioru jednostki</p>
-                <button type="button" class="btn btn-outline-primary">Wypełnij formularz</button>
+                <button type="button" class="btn btn-outline-primary" href="${pageContext.request.contextPath}/contactForm ">Wypełnij formularz</button>
                 <br><br>
                 <span class="badge badge-primary">2. Opcja</span>
                 <p> Możesz także napisać w wiadomości do jakich celów będzie używany komputer, czy masz obecnie jakieś
