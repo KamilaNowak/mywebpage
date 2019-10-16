@@ -141,13 +141,13 @@
                 <p>W formularzu wypełniasz odpowiednie pola wpisując podzespoły, które wybrałeś. Resztą zajmuję się ja.
                     Zamawiam części z najlepszych sklepów za możliwiwe najniszą cenę. Składam komputer dokładnie, dbając
                     o cable-management. Następnie kontaktuję się z klientem w sprawie odbioru jednostki</p>
-                <button type="button" class="btn btn-outline-primary" href="${pageContext.request.contextPath}/contactForm ">Wypełnij formularz</button>
+                <a  href="${pageContext.request.contextPath}/contactForm " type="button" class="btn btn-outline-primary">Wypełnij formularz</a>
                 <br><br>
                 <span class="badge badge-primary">2. Opcja</span>
                 <p> Możesz także napisać w wiadomości do jakich celów będzie używany komputer, czy masz obecnie jakieś
                     podzespoły, które można użyć przy budowaniu jednostki oraz podajesz maksymalny budżet. Dalsze kroki
                     są identyczne jak powyżej</p>
-                <button type=button" href="#" class="btn btn-outline-primary">Wyślij wiadomość</button>
+                <a href="${pageContext.request.contextPath}/contactMessage" type="button"  class="btn btn-outline-primary">Wyślij wiadomość</a>
             </div>
             <div class="col-lg-6">
                 <img class=img-fluid" class="rounded" src="http://www.naprawa-komputera.waw.pl/skladanie_komputera.jpg"

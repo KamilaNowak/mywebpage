@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.NoResultException;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -35,5 +36,13 @@ public class UserDaoRepo implements UserDao {
     public void addUser(User user) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(user);
+    }
+
+    @Override
+    public List<User> getUsers() {
+        Session session=sessionFactory.getCurrentSession();
+        List<User> userList = session.createQuery("select u from User u order by username").getResultList();
+        return  userList;
+
     }
 }

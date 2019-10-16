@@ -29,7 +29,7 @@
 </div>
 <hr>
 
-<div class="card bg-light" style="margin-left:600px; margin-right:600px; margin-top:20px; margin-bottom:20px">
+<div class="card bg-light" style="margin-left:600px; margin-right:500px; margin-top:20px; margin-bottom:20px">
     <article class="card-body mx-auto">
         <div class="card-title mt-3 text-center">
             <h3>Zaloguj się</h3>

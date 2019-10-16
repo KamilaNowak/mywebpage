@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <%@page language="Java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
@@ -35,25 +36,26 @@
             <h3>Formularz kontaktowy</h3>
         </div>
         <hr><br>
-        <form:form action="${pageContext.request.contextPath}/sendForm" method="post" class="form-horizontal">
+        <form:form action="${pageContext.request.contextPath}/sendForm" method="post" class="form-horizontal" modelAttribute="dataFromContactForm">
+
             <label>Maksymalny budżet</label>
             <div class="form-gorup input-group">
                 <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
                 <div class="col-xs-2">
-                    <input type="text" class="form-control">
+                    <form:input path="max_cost" class="form-control"/>
                 </div>
             </div>
             <br>
             <label>Posiadane podzespoły</label>
             <div class="form-group input-group">
                 <span class="input-group-text"><i class="fa fa-tasks"></i></span>
-                <textarea type="text" class="form-control" rows="4"></textarea>
+                <form:textarea path="having_comps" class="form-control" rows="4"/>
             </div>
             <br>
             <label>Dodatkowe uwagi</label>
             <div class="form-group input-group">
                 <span class="input-group-text"><i class="fa fa-shopping-cart"></i></span>
-                <textarea class="form-control" rows="7"></textarea>
+                <form:textarea path="additional_notes" class="form-control" rows="7"/>
             </div>
             <br>
             <label>System operacyjny</label><br>
@@ -63,7 +65,7 @@
             </div>
             <br><hr>
             <a href="${pageContext.request.contextPath}/ " class="btn btn-info" style="margin-left:10px;color:white"  >Strona główna</a>
-            <a href="#" class="btn btn-primary" style="margin-left:10px">Wyślij</a>
+            <input type="submit" class="btn btn-primary" value="submit">Wyślij</a>
 
 
         </form:form>

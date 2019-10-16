@@ -27,7 +27,7 @@
 </div>
 <hr>
 
-<div class="card bg-light" style="margin-left:600px; margin-right:600px; margin-bottom:20px; margin-top:20px">
+<div class="card bg-light" style="margin-left:600px; margin-right:500px; margin-bottom:20px; margin-top:20px">
     <article class="card-body mx-auto" style="max-width: 400px">
         <h3 class="card-title mt-3 text-center">Zarejestruj się</h3>
         <div class="text-center">
