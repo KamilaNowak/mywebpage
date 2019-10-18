@@ -10,11 +10,14 @@ public class Messages {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_username")
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "mess")
-    private String mess;
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "message")
+    private String message;
 
     public int getId() {
         return id;
@@ -24,11 +27,19 @@ public class Messages {
         this.id = id;
     }
 
-    public String getMess() {
-        return mess;
+    public String getUsername() {
+        return username;
     }
 
-    public void setMess(String mess) {
-        this.mess = mess;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

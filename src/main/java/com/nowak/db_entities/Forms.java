@@ -8,8 +8,14 @@ public class Forms {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_username")
+    @Column(name="id")
     private int id;
+
+    @Column(name="username")
+    private String username;
+
+    @Column(name="email")
+    private String email;
 
     @Column(name="having_comps")
     private String having_comps;
@@ -20,13 +26,20 @@ public class Forms {
     @Column(name="additional_notes")
     private String additional_notes;
 
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getHaving_comps() {
@@ -51,5 +64,13 @@ public class Forms {
 
     public void setAdditional_notes(String additional_notes) {
         this.additional_notes = additional_notes;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

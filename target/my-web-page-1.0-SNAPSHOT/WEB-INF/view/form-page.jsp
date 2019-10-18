@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <%@page language="Java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
@@ -37,7 +38,10 @@
         </div>
         <hr><br>
         <form:form action="${pageContext.request.contextPath}/sendForm" method="post" class="form-horizontal" modelAttribute="dataFromContactForm">
+            <form:input type="hidden" path="username" value="${dataFromContactForm.username}"/>
 
+        </div>
+            <br>
             <label>Maksymalny budżet</label>
             <div class="form-gorup input-group">
                 <span class="input-group-text"><i class="fas fa-money-bill-wave"></i></span>
@@ -65,7 +69,7 @@
             </div>
             <br><hr>
             <a href="${pageContext.request.contextPath}/ " class="btn btn-info" style="margin-left:10px;color:white"  >Strona główna</a>
-            <input type="submit" class="btn btn-primary" value="submit">Wyślij</a>
+            <input type="submit" class="btn btn-primary" value="Wyślij">
 
 
         </form:form>

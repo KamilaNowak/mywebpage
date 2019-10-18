@@ -11,6 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
     <style>
         .footer {
             background-color: #d9d9d9;
@@ -78,18 +79,13 @@
         <div class="col-sm-8">
             <ul class="nav nav-tabs nav-justified">
                 <li class="nav item">
-                    <a class="nav-link active" href="#">Strona główna</a>
-                </li>
-                <li class="nav item">
-                    <a class="nav-link active" href="#">Wiadomości</a>
+                    <a class="nav-link active" href="${pageContext.request.contextPath}/ ">Strona główna</a>
                 </li>
                 </li>
                 <li class="nav item">
                     <a class="nav-link active" href="#">Zarządzaj użytkownikami</a>
                 </li>
                 <br>
-
-
                 <a href="${pageContext.request.contextPath}/logout" class="btn btn-danger"> Wyloguj się </a>
             </ul>
             <br>
@@ -110,7 +106,7 @@
                         <c:param name="User_id" value="${tmp.id}"/>
                     </c:url>
                     <tr>
-                        <td> ${tmp.id}</td>
+                        <td> ${tmp.username}</td>
                         <td>${tmp.max_cost}</td>
                         <td>${tmp.having_comps}</td>
                         <td>${tmp.additional_notes}</td>

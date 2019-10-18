@@ -2,6 +2,7 @@ package com.nowak.controllers;
 
 import com.nowak.dao.UserDao;
 import com.nowak.db_entities.Forms;
+import com.nowak.db_entities.Messages;
 import com.nowak.db_entities.User;
 import com.nowak.service.UserDetailsService;
 import com.nowak.validation.ValidationUser;
@@ -69,42 +70,50 @@ public class MainController {
     }
 
     @RequestMapping("/adminManager")
-    public String showAdminPage(Model model){
+    public String showAdminPage(Model model) {
         List<User> users = userDetailsService.getUsers();
         List<Forms> forms = userDetailsService.getForms();
-        model.addAttribute("usersList",users);
-        model.addAttribute("formsList",forms);
+        model.addAttribute("usersList", users);
+        model.addAttribute("formsList", forms);
         return "admin-page";
     }
 
     @RequestMapping("/accessDenied")
-    public String showErrorPage(){
+    public String showErrorPage() {
         return "error-page";
     }
 
     @RequestMapping("/contactForm")
-    public String showContactForm(Model model){
-        model.addAttribute("dataFromContactForm", new Forms());
+    public String showContactForm(Model model) {
+        Forms form = new Forms();
+        form.setUsername(userDetailsService.currentlyLoggedUser());
+        model.addAttribute("dataFromContactForm", form);
         return "form-page";
     }
 
     @RequestMapping("/sendForm")
-    public String sendForm(@ModelAttribute("dataFromContactForm") Forms form){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String name = authentication.getName();
-        User user = userDetailsService.findUserByUsername(name);
-        int user_id = user.getId();
-        form.setId(user_id);
-        System.out.println("id:  ------------"+ user_id + " "+ user.getUsername());
+    public String sendForm(@ModelAttribute("dataFromContactForm") Forms form) {
+        //  form.setUsername(userDetailsService.currentlyLoggedUser());
         userDetailsService.addForm(form);
         return "form-page";
     }
+
     @RequestMapping("/contactMessage")
-    public String showMsgForm(){
+    public String showMsgForm(Model model) {
+        Messages message = new Messages();
+        message.setUsername(userDetailsService.currentlyLoggedUser());
+        model.addAttribute("messageModel", message);
         return "message-page";
     }
+
+    @RequestMapping("/proceedSendingMessage")
+    public String sendMessage(@ModelAttribute("messageModel") Messages message) {
+        userDetailsService.addMessage(message);
+        return "message-page";
+    }
+
     @RequestMapping("/managerForm/deleteRecord")
-    public String deleteUserAccount(){
+    public String deleteUserAccount() {
         return null;
     }
 

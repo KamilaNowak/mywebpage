@@ -2,10 +2,12 @@ package com.nowak.service;
 
 import com.nowak.dao.AuthorityDao;
 import com.nowak.dao.FormDao;
+import com.nowak.dao.MessagesDao;
 import com.nowak.dao.UserDao;
 import com.nowak.db_entities.Authority;
 
 import com.nowak.db_entities.Forms;
+import com.nowak.db_entities.Messages;
 import com.nowak.db_entities.User;
 import com.nowak.validation.ValidationUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-
 public class UserDetailsServiceClass implements UserDetailsService {
 
     @Autowired
@@ -36,6 +37,9 @@ public class UserDetailsServiceClass implements UserDetailsService {
 
     @Autowired
     private FormDao formDao;
+
+    @Autowired
+    private MessagesDao messagesDao;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -51,7 +55,7 @@ public class UserDetailsServiceClass implements UserDetailsService {
     }
 
     @Override
-    @Transactional(value = "transactionManager", rollbackFor = java.lang.Exception.class,isolation = Isolation.READ_COMMITTED)
+    @Transactional(value = "transactionManager", rollbackFor = java.lang.Exception.class, isolation = Isolation.READ_COMMITTED)
     public UserDetails loadUserByUsername(String usr) throws UsernameNotFoundException {
         User user = userDao.findUser(usr);
         if (user == null)
@@ -60,7 +64,7 @@ public class UserDetailsServiceClass implements UserDetailsService {
     }
 
     @Override
-    @Transactional(value = "transactionManager", rollbackFor = java.lang.Exception.class,isolation = Isolation.READ_COMMITTED)
+    @Transactional(value = "transactionManager", rollbackFor = java.lang.Exception.class, isolation = Isolation.READ_COMMITTED)
     public void addUser(ValidationUser validationUser) {
         User user = new User();
         user.setUsername(validationUser.getUsername());
@@ -86,5 +90,17 @@ public class UserDetailsServiceClass implements UserDetailsService {
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void addForm(Forms form) {
         formDao.addForm(form);
+    }
+
+    @Override
+    @Transactional
+    public String currentlyLoggedUser() {
+        return userDao.currentlyLoggedUser();
+    }
+
+    @Override
+    @Transactional
+    public void addMessage(Messages message) {
+        messagesDao.addMessage(message);
     }
 }

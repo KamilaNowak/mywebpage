@@ -1,10 +1,13 @@
 package com.nowak.dao;
 
+import com.nowak.db_entities.Forms;
 import com.nowak.db_entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.hibernate.Query;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +33,13 @@ public class UserDaoRepo implements UserDao {
             e.printStackTrace();
         }
         return searchUser;
+    }
+
+    @Override
+    public String currentlyLoggedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        return name;
     }
 
     @Override
