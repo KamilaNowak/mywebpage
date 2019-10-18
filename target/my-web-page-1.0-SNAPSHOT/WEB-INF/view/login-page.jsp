@@ -44,7 +44,7 @@
                     <c:if test="${param.error!=null}">
 
                         <div class="alert alert-danger col-sm-10">
-                            <i class="	far fa-frown"> Invalid username or password!</i>
+                            <i class="	far fa-frown">  Niepoprawny login lub hasło!</i>
                         </div>
 
                     </c:if>

@@ -14,9 +14,6 @@ public class Forms {
     @Column(name="username")
     private String username;
 
-    @Column(name="email")
-    private String email;
-
     @Column(name="having_comps")
     private String having_comps;
 
@@ -66,11 +63,4 @@ public class Forms {
         this.additional_notes = additional_notes;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

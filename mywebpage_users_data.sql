@@ -40,12 +40,34 @@ CONSTRAINT `id_ath_fk` FOREIGN KEY(`id_authority`) REFERENCES `authorities`(`id`
 
 
 INSERT INTO `users`(username,password,email) VALUES
-('admin','admin','knowak242@gamil.com');
+('admin','$2a$10$gVe79hF0FUnkEtyPINxhlubAO0dfNUcRV7WKZnV0250lL/4tugsW.','knowak242@gamil.com');
 
 INSERT INTO `authorities` (authority) VALUES
-('ROLE_ADMIN'),authorities
+('ROLE_ADMIN'),
 ('ROLE_USER');
 
-INSERT INTO `users_and_authorities`(id_username,id_authority) VALUES (1,1);
+INSERT INTO `users_and_authorities`(id_username,id_authority) VALUES(1,1);
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+DROP TABLE IF EXISTS `messages`;
+
+CREATE TABLE `messages` (
+`id` int(16) NOT NULL auto_increment,
+`username` varchar(256) NOT NULL,
+`message` varchar(10000) NOT NUll,
+
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+DROP Table if EXISTS `forms`;
+
+CREATE TABLE `forms` (
+`id` int(16) NOT NULL auto_increment,
+`username` varchar(256) NOT NULL,
+`having_comps` varchar(10000) NOT NUll,
+`max_cost` int(8) NOT NULL,
+`additional_notes` varchar(1000) NOT NULL,
+
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

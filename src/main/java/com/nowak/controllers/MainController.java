@@ -92,9 +92,10 @@ public class MainController {
     }
 
     @RequestMapping("/sendForm")
-    public String sendForm(@ModelAttribute("dataFromContactForm") Forms form) {
+    public String sendForm(@ModelAttribute("dataFromContactForm") Forms form,Model model) {
         //  form.setUsername(userDetailsService.currentlyLoggedUser());
         userDetailsService.addForm(form);
+        model.addAttribute("passedAlert","Formularz wysłany!");
         return "form-page";
     }
 
@@ -107,8 +108,9 @@ public class MainController {
     }
 
     @RequestMapping("/proceedSendingMessage")
-    public String sendMessage(@ModelAttribute("messageModel") Messages message) {
+    public String sendMessage(@ModelAttribute("messageModel") Messages message, Model model) {
         userDetailsService.addMessage(message);
+        model.addAttribute("passedAlert","Wiadomość wysłana!");
         return "message-page";
     }
 
