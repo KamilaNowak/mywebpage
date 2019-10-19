@@ -13,6 +13,7 @@
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
     <style>
         .footer {
             background-color: #d9d9d9;
@@ -85,60 +86,35 @@
                     <a class="nav-link active" href="${pageContext.request.contextPath}/ ">Strona główna</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="${pageContext.request.contextPath}/adminManager">Formularze i wiadomoścu</a>
+                    <a class="nav-link active" href="${pageContext.request.contextPath}/adminManager">Formularze i wiadomości</a>
                 </li>
                 <li class="nav item">
                     <a class="nav-link active" href="${pageContext.request.contextPath}/adminManager/users">Zarządzaj użytkownikami</a>
                 </li>
-                <br>
-                <a href="${pageContext.request.contextPath}/logout" class="btn btn-danger"> Wyloguj się </a>
+        <form:form action="${pageContext.request.contextPath}/logout">
+            <button type="submit" class="btn btn-danger"> Wyloguj</button>
+        </form:form>
+
             </ul>
             <br>
-            <h3><span class="badge badge-dark">Formularze</span></h3>
+            <h3><span class="badge badge-dark">Użytkownicy</span></h3>
+            <p> Aby dezaktywować konto naciśnij przycisk dezaktywacji. Ta operacja jest nieodwracalna.</p>
             <br>
             <table class="table">
                 <thead class="thead-dark">
                 <tr>
-                    <th>Klient</th>
-                    <th>Budżet</th>
-                    <th>Podzespoły</th>
-                    <th>Uwagi</th>
+                    <th>Nazwa</th>
+                    <th>E-mail</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="tmp" items="${formsList}">
-                    <c:url var="deleteRecord" value="/managerForm/deleteRecord">
+                <c:forEach var="tmp" items="${usersList}">
+                    <c:url var="deleteUser" value="/managerForm/deleteUser">
                         <c:param name="User_id" value="${tmp.id}"/>
                     </c:url>
                     <tr>
-                        <td> ${tmp.username}</td>
-                        <td>${tmp.max_cost}</td>
-                        <td>${tmp.having_comps}</td>
-                        <td>${tmp.additional_notes}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-            <br>
-            <hr>
-            <br>
-            <h3><span class="badge badge-dark">Wiadomości</span></h3>
-            <br>
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Klient</th>
-                        <th>Treść</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="tmp" items="${messagesList}">
-                    <c:url var="deleteMessage" value="/managerForm/deleteMessage">
-                        <c:param name="Message_id" value="${tmp.id}"/>
-                    </c:url>
-                    <tr>
                         <td>${tmp.username}</td>
-                        <td>${tmp.message}</td>
+                        <td>${tmp.email}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

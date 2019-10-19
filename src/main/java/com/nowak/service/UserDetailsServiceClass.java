@@ -74,7 +74,7 @@ public class UserDetailsServiceClass implements UserDetailsService {
         userDao.addUser(user);
     }
 
-    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @Transactional
     @Override
     public List<User> getUsers() {
         return userDao.getUsers();
@@ -102,5 +102,11 @@ public class UserDetailsServiceClass implements UserDetailsService {
     @Transactional
     public void addMessage(Messages message) {
         messagesDao.addMessage(message);
+    }
+
+    @Override
+    @Transactional
+    public List<Messages> getMessages() {
+        return messagesDao.getMessages();
     }
 }

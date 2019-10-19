@@ -45,10 +45,9 @@
             <form:input type="hidden" path="username" value="${dataFromContactForm.username}"/>
 
         <c:if test="${passedAlert!=null}">
-                <div class="alert alesrt-success col-xs-4">
+                <div class="alert alert-success col-xs-4">
                     ${passedAlert}
                 </div>
-
         </c:if>
 
 <br>

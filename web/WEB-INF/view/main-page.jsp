@@ -39,7 +39,7 @@
 <header>
     <nav class="navbar 	 navbar-dark navbar-expand-lg" style="background-color: #a6a6a6">
         <a class="navbar-brand" href="${pageContext.request.contextPath}/ "><img src="" width="50" height="50" alt=""
-                                              class="d-inline-block mr-1">PC-Configurer.pl</a>
+                                                                                 class="d-inline-block mr-1">PC-Configurer.pl</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu_bar"
                 aria-controls="#menu_bar" aria-expanded="false" aria-label="nav_switch">
@@ -68,12 +68,7 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" href="#">Dyski</a>
-
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#"> HDD </a>
-                        <a class="dropdown-item" href="#">SSD </a>
-                    </div>
+                    <a class="nav-link " href="#">Dyski</a>
                 </li>
 
                 <li class="nav-item">
@@ -83,6 +78,29 @@
 
             </ul>
         </div>
+        <c:if test="${pageContext.request.userPrincipal.name!=null}">
+            <button type="button" class="btn btn-warning btn-lg btn-rounded dropdown-toggle" style="color:white"
+                    data-toggle="dropdown" id="accountButton"><i
+                    class="fa fa-user"> ${pageContext.request.userPrincipal.name}</i></button>
+            <div class="dropdown-menu" aria-labelledby="accountButton" style="position:relative">
+                <a class="dropdown-item" href="#">Moje konto</a>
+                <form:form action="${pageContext.request.contextPath}/logout">
+                    <button type="submit" class="dropdown-item"  style="background-color:red;color:white">
+                        Wyloguj
+                    </button>
+                </form:form>
+            </div>
+        </c:if>
+        <c:if test="${pageContext.request.userPrincipal.name==null}">
+            <button type="button" class="btn btn-warning btn-lg btn-rounded dropdown-toggle" style="color:white"
+                    data-toggle="dropdown" id="accountButton"><i class="fa fa-user"> Niezalogowany
+            </i></button>
+            <div class="dropdown-menu" aria-labelledby="accountButton" style="position:relative">
+                <a class="dropdown-item" href="#">Moje konto</a>
+                <a class="dropdown-item" href="#" style="background-color:red;color:white">Wyloguj</a>
+            </div>
+        </c:if>
+
     </nav>
 
 
@@ -138,15 +156,19 @@
             <div class="col-md-12 col-lg-6 ">
                 <h1>Jak to działa?</h1>
                 <span class="badge badge-primary">1. Opcja</span>
-                <p>W formularzu wypełniasz odpowiednie pola wpisując podzespoły, które wybrałeś. Możesz także napisać w wiadomości do jakich celów będzie używany komputer, czy masz obecnie jakieś
-                    podzespoły, które można użyć przy budowaniu jednostki oraz podajesz maksymalny budżet.  Resztą zajmuję się ja.
+                <p>W formularzu wypełniasz odpowiednie pola wpisując podzespoły, które wybrałeś. Możesz także napisać w
+                    wiadomości do jakich celów będzie używany komputer, czy masz obecnie jakieś
+                    podzespoły, które można użyć przy budowaniu jednostki oraz podajesz maksymalny budżet. Resztą
+                    zajmuję się ja.
                     Zamawiam części z najlepszych sklepów za możliwiwe najniszą cenę. Składam komputer dokładnie, dbając
                     o cable-management. Następnie kontaktuję się z klientem w sprawie odbioru jednostki</p>
-                <a  href="${pageContext.request.contextPath}/contactForm " type="button" class="btn btn-outline-primary">Wypełnij formularz</a>
+                <a href="${pageContext.request.contextPath}/contactForm " type="button" class="btn btn-outline-primary">Wypełnij
+                    formularz</a>
                 <br><br>
                 <span class="badge badge-primary">2. Opcja</span>
                 <p> Możesz także napisać wiadomość z dowolnym pytaniem, dotyczącym oferowanych usług.</p>
-                <a href="${pageContext.request.contextPath}/contactMessage" type="button"  class="btn btn-outline-primary">Wyślij wiadomość</a>
+                <a href="${pageContext.request.contextPath}/contactMessage" type="button"
+                   class="btn btn-outline-primary">Wyślij wiadomość</a>
             </div>
             <div class="col-lg-6">
                 <img class=img-fluid" class="rounded" src="http://www.naprawa-komputera.waw.pl/skladanie_komputera.jpg"

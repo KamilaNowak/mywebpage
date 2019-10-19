@@ -34,13 +34,10 @@
             </c:if>
             <form:input type="hidden" path="username" value="${messageModel.username}"/>
             <br>
-            <h4>Treść wiadomości</h4>
+            <label>Treść wiadomości</label>
             <div class="form-group input-group">
-                <div class="input-group-text">
-                    <div class="col-xs-2">
+                <span class="input-group-text"></span>
                         <form:textarea path="message" rows="12" class="form-control"/>
-                    </div>
-                </div>
             </div>
             <input type="submit" value="Wyślij" class="btn btn-primary" style="margin-left:10px;color:white">
             <a href="${pageContext.request.contextPath}/ " class="btn btn-info">Strona główna</a>
@@ -49,3 +46,6 @@
 </div>
 </body>
 </html>
+
+
+

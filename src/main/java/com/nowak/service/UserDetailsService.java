@@ -18,4 +18,5 @@ public interface UserDetailsService extends org.springframework.security.core.us
     void addForm(Forms form);
     String currentlyLoggedUser();
     void addMessage(Messages messages);
+     List<Messages> getMessages();
 }

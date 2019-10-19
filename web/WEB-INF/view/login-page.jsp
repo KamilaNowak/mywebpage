@@ -63,6 +63,7 @@
             </div>
             <br>
             <button type="submit" class="btn btn-outline-success" style="margin-left:350px">Zaloguj</button>
+            <br>
             <a href ="${pageContext.request.contextPath}/register" class="btn btn-primary" style="margin-left:0px">Zarejestruj</a>
             <a href="${pageContext.request.contextPath}/ " class="btn btn-info" style="margin-left:10px;color:white"  >Strona główna</a>
         </form:form>

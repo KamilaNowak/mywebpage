@@ -71,11 +71,17 @@ public class MainController {
 
     @RequestMapping("/adminManager")
     public String showAdminPage(Model model) {
-        List<User> users = userDetailsService.getUsers();
         List<Forms> forms = userDetailsService.getForms();
-        model.addAttribute("usersList", users);
+        List<Messages> messages = userDetailsService.getMessages();
         model.addAttribute("formsList", forms);
+        model.addAttribute("messagesList", messages);
         return "admin-page";
+    }
+    @RequestMapping("/adminManager/users")
+    public String showUsers(Model model){
+        List<User> users = userDetailsService.getUsers();
+        model.addAttribute("usersList", users);
+        return "admin-page-users";
     }
 
     @RequestMapping("/accessDenied")
@@ -92,10 +98,10 @@ public class MainController {
     }
 
     @RequestMapping("/sendForm")
-    public String sendForm(@ModelAttribute("dataFromContactForm") Forms form,Model model) {
+    public String sendForm(@ModelAttribute("dataFromContactForm") Forms form, Model model) {
         //  form.setUsername(userDetailsService.currentlyLoggedUser());
         userDetailsService.addForm(form);
-        model.addAttribute("passedAlert","Formularz wysłany!");
+        model.addAttribute("passedAlert", "Formularz wysłany!");
         return "form-page";
     }
 
@@ -110,7 +116,7 @@ public class MainController {
     @RequestMapping("/proceedSendingMessage")
     public String sendMessage(@ModelAttribute("messageModel") Messages message, Model model) {
         userDetailsService.addMessage(message);
-        model.addAttribute("passedAlert","Wiadomość wysłana!");
+        model.addAttribute("passedAlert", "Wiadomość wysłana!");
         return "message-page";
     }
 
@@ -119,4 +125,12 @@ public class MainController {
         return null;
     }
 
+    @RequestMapping("/managerForm/deleteMessage")
+    public String deleteMessage() {
+        return null;
+    }
+    @RequestMapping("/managerForm/deleteUser")
+    public String deleteUser() {
+        return null;
+    }
 }

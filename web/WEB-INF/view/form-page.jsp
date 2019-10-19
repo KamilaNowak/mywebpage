@@ -48,7 +48,6 @@
                 <div class="alert alert-success col-xs-4">
                     ${passedAlert}
                 </div>
-
         </c:if>
 
 <br>

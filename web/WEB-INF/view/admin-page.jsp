@@ -9,7 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
     <style>
@@ -70,10 +71,12 @@
     <div class="row">
         <div class="col-sm-4">
             <h2>Zalogowany użytkownik</h2>
-            <p> <span class="input-group-text"><i class="fa fa-user"> <security:authentication property="principal.username"/></i></span></p>
+            <p><span class="input-group-text"><i class="fa fa-user"> <security:authentication
+                    property="principal.username"/></i></span></p>
             <hr>
             <h2>Role</h2>
-            <p><span class="input-group-text"><i class="fa fa-align-left"> <security:authentication property="principal.authorities"/></i></span></p>
+            <p><span class="input-group-text"><i class="fa fa-align-left"> <security:authentication
+                    property="principal.authorities"/></i></span></p>
             <hr>
         </div>
         <div class="col-sm-8">
@@ -81,9 +84,11 @@
                 <li class="nav item">
                     <a class="nav-link active" href="${pageContext.request.contextPath}/ ">Strona główna</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="${pageContext.request.contextPath}/adminManager">Formularze i wiadomości</a>
                 </li>
                 <li class="nav item">
-                    <a class="nav-link active" href="#">Zarządzaj użytkownikami</a>
+                    <a class="nav-link active" href="${pageContext.request.contextPath}/adminManager/users">Zarządzaj użytkownikami</a>
                 </li>
                 <br>
                 <a href="${pageContext.request.contextPath}/logout" class="btn btn-danger"> Wyloguj się </a>
@@ -110,6 +115,30 @@
                         <td>${tmp.max_cost}</td>
                         <td>${tmp.having_comps}</td>
                         <td>${tmp.additional_notes}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <br>
+            <hr>
+            <br>
+            <h3><span class="badge badge-dark">Wiadomości</span></h3>
+            <br>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Klient</th>
+                        <th>Treść</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="tmp" items="${messagesList}">
+                    <c:url var="deleteMessage" value="/managerForm/deleteMessage">
+                        <c:param name="Message_id" value="${tmp.id}"/>
+                    </c:url>
+                    <tr>
+                        <td>${tmp.username}</td>
+                        <td>${tmp.message}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
