@@ -12,11 +12,28 @@ import java.util.List;
 public interface UserDetailsService extends org.springframework.security.core.userdetails.UserDetailsService {
 
     User findUserByUsername(String username);
+
     List<User> getUsers();
+
     void addUser(ValidationUser validationUser);
+
     List<Forms> getForms();
+
     void addForm(Forms form);
+
     String currentlyLoggedUser();
+
     void addMessage(Messages messages);
-     List<Messages> getMessages();
+
+    List<Messages> getMessages();
+
+    void deleteForm(int id);
+
+    void deleteUser(int id);
+
+    void deleteMessage(int id);
+
+    List<Forms> getOnlyUserForms(String name);
+
+    List<Messages> getOnlyUserMessages(String name);
 }

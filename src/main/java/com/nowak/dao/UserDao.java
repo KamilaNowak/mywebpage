@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface UserDao {
 
-    public User findUser(String username);
-    public String currentlyLoggedUser();
-    public void addUser(User user);
-
+    User findUser(String username);
+    String currentlyLoggedUser();
+    void addUser(User user);
     List<User> getUsers();
+    void deleteUser(int id);
 }

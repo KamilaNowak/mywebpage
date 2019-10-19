@@ -3,6 +3,7 @@ package com.nowak.dao;
 import com.nowak.db_entities.Messages;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,5 +28,22 @@ public class MessagesDaoRepo implements MessagesDao {
         Session session=sessionFactory.getCurrentSession();
         List<Messages> list= session.createQuery("from Messages").getResultList();
         return list;
+    }
+
+    @Override
+    public void deleteMessage(int id) {
+        Session session=sessionFactory.getCurrentSession();
+        Query query = session.createQuery("delete from Messages where id=:id");
+        query.setParameter("id",id);
+        query.executeUpdate();
+    }
+
+    @Override
+    public List<Messages> getOnlyUserMessages(String name) {
+        Session session= sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select m from Messages m where username=:name ");
+        query.setParameter("name",name);
+        List<Messages> messages = query.getResultList();
+        return messages;
     }
 }

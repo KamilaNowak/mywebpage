@@ -83,12 +83,14 @@
                     data-toggle="dropdown" id="accountButton"><i
                     class="fa fa-user"> ${pageContext.request.userPrincipal.name}</i></button>
             <div class="dropdown-menu" aria-labelledby="accountButton" style="position:relative">
-                <a class="dropdown-item" href="#">Moje konto</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/account"> Moje konto</a>
                 <form:form action="${pageContext.request.contextPath}/logout">
                     <button type="submit" class="dropdown-item"  style="background-color:red;color:white">
                         Wyloguj
                     </button>
                 </form:form>
+                <hr>
+                <a class="btn btn-secondary" href="${pageContext.request.contextPath}/adminManager">Panel administratora</a>
             </div>
         </c:if>
         <c:if test="${pageContext.request.userPrincipal.name==null}">
@@ -96,13 +98,18 @@
                     data-toggle="dropdown" id="accountButton"><i class="fa fa-user"> Niezalogowany
             </i></button>
             <div class="dropdown-menu" aria-labelledby="accountButton" style="position:relative">
-                <a class="dropdown-item" href="#">Moje konto</a>
-                <a class="dropdown-item" href="#" style="background-color:red;color:white">Wyloguj</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/account">Moje konto</a>
+                <form:form action="${pageContext.request.contextPath}/logout">
+                    <button type="submit" class="dropdown-item"  style="background-color:red;color:white">
+                        Wyloguj
+                    </button>
+                </form:form>
+                <hr>
+                <a class="btn btn-secondary" href="${pageContext.request.contextPath}/adminManager">Panel administratora</a>
             </div>
         </c:if>
 
     </nav>
-
 
     <div class="jumbotron text-center">
         <h1 style="color:white">Informator podzespołów komputera</h1>
@@ -201,7 +208,6 @@
             <div class="row text-center">
                 <div class="col-12">
                     <h4>&copy; PC-Configurer.pl | 2019</h4>
-                    <a href="${pageContext.request.contextPath}/adminManager">Admin Panel</a>
                 </div>
             </div>
         </div>

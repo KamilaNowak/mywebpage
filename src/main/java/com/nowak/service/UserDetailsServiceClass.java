@@ -109,4 +109,33 @@ public class UserDetailsServiceClass implements UserDetailsService {
     public List<Messages> getMessages() {
         return messagesDao.getMessages();
     }
+
+    @Override
+    @Transactional
+    public void deleteForm(int id) {
+        formDao.deleteForm(id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteUser(int id) {
+        userDao.deleteUser(id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteMessage(int id) {
+        messagesDao.deleteMessage(id);
+    }
+
+    @Override
+    @Transactional
+    public List<Forms> getOnlyUserForms(String name) {
+        return formDao.getOnlyUserForms(name);
+    }
+
+    @Override
+    public List<Messages> getOnlyUserMessages(String name) {
+        return messagesDao.getOnlyUserMessages(name);
+    }
 }

@@ -6,6 +6,7 @@ import com.nowak.db_entities.Messages;
 import com.nowak.db_entities.User;
 import com.nowak.service.UserDetailsService;
 import com.nowak.validation.ValidationUser;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,7 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -73,15 +76,11 @@ public class MainController {
     public String showAdminPage(Model model) {
         List<Forms> forms = userDetailsService.getForms();
         List<Messages> messages = userDetailsService.getMessages();
+        List<User> users = userDetailsService.getUsers();
+        model.addAttribute("usersList", users);
         model.addAttribute("formsList", forms);
         model.addAttribute("messagesList", messages);
         return "admin-page";
-    }
-    @RequestMapping("/adminManager/users")
-    public String showUsers(Model model){
-        List<User> users = userDetailsService.getUsers();
-        model.addAttribute("usersList", users);
-        return "admin-page-users";
     }
 
     @RequestMapping("/accessDenied")
@@ -120,17 +119,47 @@ public class MainController {
         return "message-page";
     }
 
-    @RequestMapping("/managerForm/deleteRecord")
-    public String deleteUserAccount() {
-        return null;
+    @RequestMapping("/adminManager/deleteRecord")
+    public String deleteUserAccount(@RequestParam("User_id") int id) {
+        userDetailsService.deleteForm(id);
+        return "redirect:/adminManager";
     }
 
-    @RequestMapping("/managerForm/deleteMessage")
-    public String deleteMessage() {
+    @RequestMapping("/adminManager/deleteMessage")
+    public String deleteMessage(@RequestParam("Message_id") int id) {
+        userDetailsService.deleteMessage(id);
+        return "redirect:/adminManager";
+    }
+
+    @RequestMapping("/adminManager/deleteUser")
+    public String deleteUser(@RequestParam("User_id") int id) {
+        userDetailsService.deleteUser(id);
+        return "redirect:/adminManager";
+    }
+
+    @RequestMapping("/account")
+    public String editAccount(Model model) {
+        User user=userDetailsService.findUserByUsername(userDetailsService.currentlyLoggedUser());
+        List<Forms> formsList=userDetailsService.getOnlyUserForms(userDetailsService.currentlyLoggedUser());
+        List<Messages> messagesList = userDetailsService.getOnlyUserMessages(userDetailsService.currentlyLoggedUser());
+        if(user.getPhone()==0){
+            user.setPhone(0);
+        }
+        if(user.getBirthDate()==null){
+            user.setBirthDate("Brak danych");
+        }
+        model.addAttribute("user",user);
+        model.addAttribute("forms",formsList);
+        model.addAttribute("messages",messagesList);
+        return "account-page";
+    }
+
+    @RequestMapping("/adminManager/updateForm")
+    public String userUpdateForm(){
         return null;
     }
-    @RequestMapping("/managerForm/deleteUser")
-    public String deleteUser() {
+    @RequestMapping("/adminManager/updateMessage")
+    public String updateMessage(){
         return null;
     }
 }

@@ -21,6 +21,28 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name="phone_nr")
+    private long phone;
+
+    @Column(name="birth_date")
+    private String birthDate;
+
+    public long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(long phone) {
+        this.phone = phone;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
     public User() {
     }
 

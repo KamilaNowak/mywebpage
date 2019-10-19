@@ -7,6 +7,7 @@ import java.util.List;
 public interface FormDao {
 
     List<Forms> getForms();
+    List<Forms> getOnlyUserForms(String name);
     void addForm(Forms form);
-    void deleteForm();
+    void deleteForm(int id);
 }

@@ -55,4 +55,12 @@ public class UserDaoRepo implements UserDao {
         return  userList;
 
     }
+
+    @Override
+    public void deleteUser(int id) {
+        Session session= sessionFactory.getCurrentSession();
+        Query query =session.createQuery("delete from User where id=:id");
+        query.setParameter("id",id);
+        query.executeUpdate();
+    }
 }
