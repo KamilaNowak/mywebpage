@@ -14,71 +14,89 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <style>
+        .image-bg{
+            background-image: url('https://www.newegg.com/insider/wp-content/uploads/2018/04/Aorus-X370-Gaming-3-Motherboard-1-of-1-21.jpg');
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+        }
+    </style>
 </head>
 
 <body>
 <br>
-<div class="container">
-    <div class="row ">
-        <div class="col-12 text-center">
-            <p> Powered by PC-Configurer.pl</p>
+<div class="image-bg">
+    <div class="container">
+        <div class="row ">
+            <div class="col-12 text-center" style="color:white">
+                <p> Powered by PC-Configurer.pl</p>
+            </div>
         </div>
     </div>
-</div>
-<hr>
+    <hr>
 
-<div class="card bg-light" style="margin-left:600px; margin-right:500px; margin-bottom:20px; margin-top:20px">
-    <article class="card-body mx-auto" style="max-width: 400px">
-        <h3 class="card-title mt-3 text-center">Zarejestruj się</h3>
-        <div class="text-center">
-            <p class="text-center">Utwórz nowe konto, aby móc korzystać ze wszystkich możliwości</p>
-            <p>Kliknij<span class="badge badge-primary">Logowanie</span> jeśli masz już konto.</p>
-        </div>
-        <br>
-        <hr>
-        <br>
-        <form:form action="${pageContext.request.contextPath}/proceedRegisteration" method="post"
-                   class="form-horizontal" modelAttribute="validationUser">
-            <c:if test="${fieldError!=null}">
-                <div class="alert alert-danger col-xs-4">
-                        ${fieldError}
-                </div>
-            </c:if>
-            <c:if test="${successRegisterMessage!=null}">
-                <div class="alert alert-success col-xs-4">
-                        ${successRegisterMessage}
-                </div>
-            </c:if>
+    <div class="card bg-light" style="margin-left:600px; margin-right:500px; margin-bottom:20px; margin-top:20px">
+        <article class="card-body mx-auto" style="max-width: 400px">
+            <h3 class="card-title mt-3 text-center">Zarejestruj się</h3>
+            <div class="text-center">
+                <p class="text-center">Utwórz nowe konto, aby móc korzystać ze wszystkich możliwości</p>
+                <p>Kliknij<span class="badge badge-primary">Logowanie</span> jeśli masz już konto.</p>
+            </div>
 
-            <div class="form-group input-group">
-                <span class="input-group-text"><i class="fa fa-user"></i></span>
-                <form:input path="username" placeholder="Username" class="form-control"/>
-            </div>
+            <hr>
             <br>
-            <div class="form-group input-group">
-                <span class="input-group-text"><i class="fa fa-eye-slash"></i></span>
-                <form:password path="password" placeholder="password" name="password" class="form-control"/>
-            </div>
-            <br>
-            <div class="form-group input-group">
-                <span class="input-group-text"><i class="fa fa-eye-slash"></i></span>
-                <form:password path="confirmPassword" placeholder="confirm password" name="password"
-                               class="form-control"/>
-            </div>
-            <br>
-            <div class="form-group input-group">
-                <span class="input-group-text"><i class="far fa-envelope"></i></span>
-                <form:input path="email" placeholder="email" class="form-control"/>
-            </div>
-            <br>
-            <button type="submit" id="registerButton" style="margin-left:290px" class="btn btn-outline-success">
-                Zarejestruj
-            </button>
-            <a href="${pageContext.request.contextPath}/login" class="btn btn-primary"
-               style="margin-left:0px">Logowanie</a>
-            <a href="${pageContext.request.contextPath}/ " class="btn btn-info" style="margin-left:10px;color:white">
-                Strona główna</a>
-        </form:form>
-    </article>
+            <form:form action="${pageContext.request.contextPath}/proceedRegisteration" method="post"
+                       class="form-horizontal" modelAttribute="validationUser">
+                <c:if test="${fieldError!=null}">
+                    <div class="alert alert-danger col-xs-4">
+                            ${fieldError}
+                    </div>
+                </c:if>
+                <c:if test="${successRegisterMessage!=null}">
+                    <div class="alert alert-success col-xs-4">
+                            ${successRegisterMessage}
+                    </div>
+                </c:if>
+
+                <div class="form-group input-group">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    <form:input path="username" placeholder="Username" name="username" class="form-control"/>
+                </div>
+                <br>
+                <div class="form-group input-group">
+                    <span class="input-group-text"><i class="fa fa-eye-slash"></i></span>
+                    <form:password path="password" placeholder="password" name="password" class="form-control"/>
+                </div>
+                <br>
+                <div class="form-group input-group">
+                    <span class="input-group-text"><i class="fa fa-eye-slash"></i></span>
+                    <form:password path="confirmPassword" placeholder="confirm password" name="password"
+                                   class="form-control"/>
+                </div>
+                <br>
+                <div class="form-group input-group">
+                    <span class="input-group-text"><i class="far fa-envelope"></i></span>
+                    <form:input path="email" placeholder="email" class="form-control"/>
+                </div>
+                <br><hr><br>
+                <button type="submit" id="registerButton" style="margin-left:290px" class="btn btn-outline-success">
+                    Zarejestruj
+                </button>
+                <a href="${pageContext.request.contextPath}/login" class="btn btn-primary"
+                   style="margin-left:0px">Logowanie</a>
+                <a href="${pageContext.request.contextPath}/ " class="btn btn-info"
+                   style="margin-left:10px;color:white">
+                    Strona główna</a>
+            </form:form>
+        </article>
+    </div>
 </div>
 </body>

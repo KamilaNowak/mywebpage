@@ -69,10 +69,38 @@ public class UserDetailsServiceClass implements UserDetailsService {
         User user = new User();
         user.setUsername(validationUser.getUsername());
         user.setPassword(passwordEncoder.encode(validationUser.getPassword()));
-        user.setEmail(validationUser.getPassword());
+        user.setEmail(validationUser.getEmail());
+        System.out.println(user.getUsername()+" "+
+        user.getPassword()+" "+
+        user.getEmail());
         user.setAuthority(Arrays.asList(authorityDao.findAuthority("ROLE_USER")));
         userDao.addUser(user);
     }
+    @Override
+    public String encodePassword(String psw){
+        return passwordEncoder.encode(psw);
+    }
+
+    @Override
+    @Transactional
+    public void changePassword(String password) {
+        userDao.changePassword(passwordEncoder.encode(password));
+    }
+
+    @Override
+    @Transactional
+    public void updateUser(ValidationUser validationUser) {
+        User user = new  User();
+        user.setId(userDao.findUser(currentlyLoggedUser()).getId());
+        user.setUsername(userDao.findUser(currentlyLoggedUser()).getUsername());
+        user.setPassword(userDao.findUser(currentlyLoggedUser()).getPassword());
+        user.setEmail(validationUser.getEmail());
+        user.setPhone(validationUser.getPhone());
+        user.setBirthDate(validationUser.getBirthDate());
+        user.setAuthority(Arrays.asList(authorityDao.findAuthority("ROLE_USER")));
+        userDao.updateUser(user);
+    }
+
 
     @Transactional
     @Override
@@ -135,7 +163,20 @@ public class UserDetailsServiceClass implements UserDetailsService {
     }
 
     @Override
+    @Transactional
     public List<Messages> getOnlyUserMessages(String name) {
         return messagesDao.getOnlyUserMessages(name);
+    }
+
+    @Override
+    @Transactional
+    public User convertToUser(ValidationUser validationUser) {
+        return userDao.convertToUser(validationUser);
+    }
+
+    @Override
+    @Transactional
+    public ValidationUser convertToValidationUser(User user) {
+        return userDao.convertToValidationUser(user);
     }
 }

@@ -17,6 +17,8 @@ public interface UserDetailsService extends org.springframework.security.core.us
 
     void addUser(ValidationUser validationUser);
 
+    void updateUser(ValidationUser validationUser);
+
     List<Forms> getForms();
 
     void addForm(Forms form);
@@ -36,4 +38,12 @@ public interface UserDetailsService extends org.springframework.security.core.us
     List<Forms> getOnlyUserForms(String name);
 
     List<Messages> getOnlyUserMessages(String name);
+
+    User convertToUser(ValidationUser validationUser);
+
+    ValidationUser convertToValidationUser(User user);
+
+    String encodePassword(String psw);
+
+    void changePassword(String password);
 }

@@ -105,11 +105,15 @@
                     </li>
                 </ul>
 
-                <div class="tab-content text-center">
+                <div class="tab-content ">
                     <div class="tab-pane h-100 p-4 active border border-primary" id="accountDetails" role="tabpanel">
+                        <a href="${pageContext.request.contextPath}/account/change-password"  class="btn btn-outline-danger"> Zmień hasło </a>
+                        <a href="${pageContext.request.contextPath}/account/edit-account" class="btn btn-info" style="margin-right:10px"> Edytuj konto</a> <hr>
+
+                        <br>
                         <form>
                             <div class="form-group row text-center">
-                                <label class="col-sm-2 col-form-label">Nazwa użytkownika</label>
+                                <label class="col-sm-2 col-form-label">Nazwa użytkownika  </label>
                                 <div class="col-sm-10">
                                     <input type="text" readonly class="form-control-plaintext"
                                            value=" ${user.username}">
@@ -117,21 +121,21 @@
                             </div>
                             <hr>
                             <div class="form-group row text-center">
-                                <label class="col-sm-2 col-form-label">E-mail</label>
+                                <label class="col-sm-2 col-form-label">E-mail  </label>
                                 <div class="col-sm-10">
                                     <input type="text" readonly class="form-control-plaintext" value=" ${user.email}">
                                 </div>
                             </div>
                             <hr>
                             <div class="form-group row text-center">
-                                <label class="col-sm-2 col-form-label">Phone number</label>
+                                <label class="col-sm-2 col-form-label">Numer telefonu  </label>
                                 <div class="col-sm-10">
                                     <input type="text" readonly class="form-control-plaintext" value=" ${user.phone}">
                                 </div>
                             </div>
                             <hr>
                             <div class="form-group row text-center">
-                                <label class="col-sm-2 col-form-label">Data urodzenia</label>
+                                <label class="col-sm-2 col-form-label">Data urodzenia  </label>
                                 <div class="col-sm-10">
                                     <input type="text" readonly class="form-control-plaintext"
                                            value=" ${user.birthDate}">
@@ -165,26 +169,26 @@
                         </table>
                     </div>
                     <div class="tab-pane h-100 p-5 border border-danger" id="myMessages" role="tabpanel">
-                       <div class= "table">
-                           <div class="thead-light">
-                               <tr>
-                                   <th>Treść wiadomości</th>
-                               </tr>
-                           </div>
-                           <div class="tbody">
-                               <c:forEach var="tmp" items="${messages}">
-                                   <c:url var="updateMessage" value="/adminManager/updateMessage">
-                                       <c:param name="Message_id" value="${tmp.id}"/>
-                                   </c:url>
-                                   <tr>
-                                       <td>${tmp.message}</td>
-                                   </tr>
-                               </c:forEach>
-                       </div>
-                        </div>
+                        <table class="table">
+                            <thead class="thead-light">
+                            <tr>
+                                <th>Treść wiadomości</th>
+                            </tr>
+                            </thead>
+                            <div class="tbody">
+                                <c:forEach var="tmp" items="${messages}">
+                                    <c:url var="updateMessage" value="/adminManager/updateMessage">
+                                        <c:param name="Message_id" value="${tmp.id}"/>
+                                    </c:url>
+                                    <tr>
+                                        <td>${tmp.message}</td>
+                                    </tr>
+                                </c:forEach>
+                            </div>
+                        </table>
                     </div>
-                    <div class="tab-pane h-100 p-5 border border-info" id="editAccount" role="tabpanel">Home tab
-                        content...
+                    <div class="tab-pane h-100 p-5 border border-info" id="editAccount" role="tabpanel">
+
                     </div>
 
                 </div>
