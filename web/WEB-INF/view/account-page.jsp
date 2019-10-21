@@ -173,6 +173,7 @@
                             <thead class="thead-light">
                             <tr>
                                 <th>Treść wiadomości</th>
+                                <th>Data wysłania</th>
                             </tr>
                             </thead>
                             <div class="tbody">
@@ -182,6 +183,7 @@
                                     </c:url>
                                     <tr>
                                         <td>${tmp.message}</td>
+                                        <td>${tmp.date}</td>
                                     </tr>
                                 </c:forEach>
                             </div>

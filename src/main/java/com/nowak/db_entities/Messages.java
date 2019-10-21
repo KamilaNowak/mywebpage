@@ -3,6 +3,7 @@ package com.nowak.db_entities;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "messages")
@@ -18,6 +19,29 @@ public class Messages {
 
     @Column(name = "message")
     private String message;
+
+    @Column(name="date",columnDefinition = "DATETIME")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
+
+    @Column(name="recipient")
+    private String recipient;
+
+    public String getRecipient() {
+        return recipient;
+    }
+
+    public void setRecipient(String recipient) {
+        this.recipient = recipient;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public int getId() {
         return id;

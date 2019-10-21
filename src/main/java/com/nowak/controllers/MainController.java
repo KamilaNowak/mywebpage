@@ -9,9 +9,6 @@ import com.nowak.validation.ValidationPassword;
 import com.nowak.validation.ValidationUser;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.criteria.CriteriaBuilder;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -125,6 +122,19 @@ public class MainController {
         return "message-page";
     }
 
+    @RequestMapping("/adminManager/contactMessageToUser")
+    public String showMessageToUser(@RequestParam("Message_id") int id, Model model) {
+        Messages message = userDetailsService.getMessagebyId(id);
+        model.addAttribute("messageFromUser", message);
+        model.addAttribute("messageToUser", new Messages());
+        return "message-to-user-page";
+    }
+
+    @RequestMapping("/adminManager/proceedSendReply")
+    public String proceedSendingReply() {
+        return null;
+    }
+
     @RequestMapping("/adminManager/deleteRecord")
     public String deleteUserAccount(@RequestParam("User_id") int id) {
         userDetailsService.deleteForm(id);
@@ -164,15 +174,16 @@ public class MainController {
     public String editAccount(Model model) {
         User user = userDetailsService.findUserByUsername(userDetailsService.currentlyLoggedUser());
         ValidationUser validationUser = userDetailsService.convertToValidationUser(user);
-        model.addAttribute("validationUser",validationUser);
+        model.addAttribute("validationUser", validationUser);
         return "edit-account-page";
     }
+
     @RequestMapping("account/proceedEditAccount")
-    public String editAccountProceed(@Valid @ModelAttribute("validationUser") ValidationUser validationUser, BindingResult bindingResult, Model model){
+    public String editAccountProceed(@Valid @ModelAttribute("validationUser") ValidationUser validationUser, BindingResult bindingResult, Model model) {
         User user = userDetailsService.convertToUser(validationUser);
         if (bindingResult.hasErrors()) {
             model.addAttribute("fieldError", bindingResult.getFieldError().getDefaultMessage());
-                return "edit-account-page";
+            return "edit-account-page";
         }
 //       String userName = validationUser.getUsername();
 //        User isUserExisting = userDao.findUser(userName);
@@ -183,30 +194,32 @@ public class MainController {
             model.addAttribute("successRegisterMessage", "Zaktualizowano szczegóły konta ");
         }
         userDetailsService.updateUser(validationUser);
-        return"edit-account-page";
+        return "edit-account-page";
     }
+
     @RequestMapping("/account/change-password")
-    public String changePassword(Model model){
+    public String changePassword(Model model) {
         model.addAttribute("validationPassword", new ValidationPassword());
         return "change-password-page";
     }
-  //  @PreAuthorize("hasRole('ROLE_USER')")
+
+    //  @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping("/account/proceedChangePassword")
-    public String proceedChangePassword(@Valid @ModelAttribute("validationPassword") ValidationPassword validationPassword, BindingResult bindingResult, Model model){
-        User user= userDetailsService.findUserByUsername(userDetailsService.currentlyLoggedUser());
+    public String proceedChangePassword(@Valid @ModelAttribute("validationPassword") ValidationPassword validationPassword, BindingResult bindingResult, Model model) {
+        User user = userDetailsService.findUserByUsername(userDetailsService.currentlyLoggedUser());
         String username = user.getUsername();
         String old = userDetailsService.encodePassword(validationPassword.getOldPassword());
-        if(passwordEncoder.matches(validationPassword.getOldPassword(),user.getPassword())==false){
+        if (passwordEncoder.matches(validationPassword.getOldPassword(), user.getPassword()) == false) {
             model.addAttribute("fieldError", "Niepoprawne obecne hasło!");
             return "change-password-page";
-        }
-        else if(bindingResult.hasErrors()==false){
+        } else if (bindingResult.hasErrors() == false) {
             model.addAttribute("successRegisterMessage", "Hasło zostało zmienione");
         }
         userDetailsService.changePassword(validationPassword.getNewPassword());
         return "change-password-page";
 
     }
+
     @RequestMapping("/adminManager/updateForm")
     public String userUpdateForm() {
         return null;

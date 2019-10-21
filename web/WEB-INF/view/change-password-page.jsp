@@ -17,7 +17,7 @@
 
     <style>
         .image-bg{
-            background-image: url('https://wallpaperbro.com/img/308276.jpg');
+            background-image: url('https://www.newegg.com/insider/wp-content/uploads/2018/04/Aorus-X370-Gaming-3-Motherboard-1-of-1-21.jpg');
             height: 100%;
             background-position: center;
             background-repeat: no-repeat;
@@ -27,7 +27,6 @@
             left: 0;
             min-width: 100%;
             min-height: 100%;
-
         }
     </style>
 </head>

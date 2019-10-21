@@ -154,7 +154,9 @@
                         <tr>
                             <th>Klient</th>
                             <th>Treść</th>
+                            <th>Data dodania</th>
                             <th>Akcja</th>
+                            <th>Odpowiedź</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -162,10 +164,15 @@
                             <c:url var="deleteMessage" value="/adminManager/deleteMessage">
                                 <c:param name="Message_id" value="${tmp.id}"/>
                             </c:url>
+                            <c:url var="reply" value="/adminManager/contactMessageToUser">
+                                <c:param name="Message_id" value="${tmp.id}"/>
+                            </c:url>
                             <tr>
                                 <td>${tmp.username}</td>
                                 <td>${tmp.message}</td>
+                                <th>${tmp.date}</th>
                                 <td><a href="${deleteMessage}" onclick="if (!(confirm('Czy napewno chcesz usunąć tą wiadomość?'))) return false">Usuń</a></td>
+                                <td><a href="${reply}">Odpowiedz</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -197,7 +204,7 @@
                                 <td>${tmp.email}</td>
                                 <td>${tmp.phone}</td>
                                 <td>${tmp.birthDate}</td>
-                                <td><a href="${deleteUser}" onclick="if (!(confirm('Czy napewno chcesz dezaktywować kontro użytkownika?'))) return false">Usuń</a></td>
+                                <td><a href="${deleteUser}" onclick="if (!(confirm('Czy napewno chcesz dezaktywować konto użytkownika?'))) return false">Usuń</a></td>
                             </tr>
                         </c:forEach>
                         </tbody>

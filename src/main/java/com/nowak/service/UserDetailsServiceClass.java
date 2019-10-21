@@ -15,14 +15,16 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -126,9 +128,29 @@ public class UserDetailsServiceClass implements UserDetailsService {
         return userDao.currentlyLoggedUser();
     }
 
+
+    @Override
+    @Transactional
+    public void addMessageToUser(Messages message, String username) {
+        try {
+            message.setDate(setCurrentDate());
+            message.setUsername(findUserByUsername(currentlyLoggedUser()).getUsername());
+            message.setRecipient(username);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     @Transactional
     public void addMessage(Messages message) {
+        try {
+            message.setDate(setCurrentDate());
+            message.setUsername(findUserByUsername(currentlyLoggedUser()).getUsername());
+            message.setRecipient("admin");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         messagesDao.addMessage(message);
     }
 
@@ -136,6 +158,12 @@ public class UserDetailsServiceClass implements UserDetailsService {
     @Transactional
     public List<Messages> getMessages() {
         return messagesDao.getMessages();
+    }
+
+    @Override
+    @Transactional
+    public Messages getMessagebyId(int id) {
+        return messagesDao.getMessagebyId(id);
     }
 
     @Override
@@ -178,5 +206,13 @@ public class UserDetailsServiceClass implements UserDetailsService {
     @Transactional
     public ValidationUser convertToValidationUser(User user) {
         return userDao.convertToValidationUser(user);
+    }
+
+    public Date setCurrentDate() throws ParseException {
+        Date now = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String str = formatter.format(now);
+        now = formatter.parse(str);
+        return now;
     }
 }

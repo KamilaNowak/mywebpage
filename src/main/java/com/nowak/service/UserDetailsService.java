@@ -4,8 +4,7 @@ import com.nowak.db_entities.Forms;
 import com.nowak.db_entities.Messages;
 import com.nowak.db_entities.User;
 import com.nowak.validation.ValidationUser;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 
 import java.util.List;
 
@@ -27,7 +26,11 @@ public interface UserDetailsService extends org.springframework.security.core.us
 
     void addMessage(Messages messages);
 
+    void addMessageToUser(Messages message, String username);
+
     List<Messages> getMessages();
+
+    Messages getMessagebyId(int id);
 
     void deleteForm(int id);
 

@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 
-        <style>
+    <style>
         .image-bg{
-            background-image: url('https://www.corsair.com/corsairmedia/sys_master/productcontent/blog_how-to-build-a-pc---motherboard-selection-Content-1.jpg');
+            background-image: url('https://www.newegg.com/insider/wp-content/uploads/2018/04/Aorus-X370-Gaming-3-Motherboard-1-of-1-21.jpg');
             height: 100%;
             background-position: center;
             background-repeat: no-repeat;
@@ -81,6 +81,7 @@
             <br><br>
             <a href ="${pageContext.request.contextPath}/register" class="btn btn-primary" style="margin-left:0px">Zarejestruj</a>
             <a href="${pageContext.request.contextPath}/ " class="btn btn-info" style="margin-left:10px;color:white"  >Strona główna</a>
+            <a href="#"> Zapomniałem hasło</a>
         </form:form>
     </article>
 </div>

@@ -14,22 +14,36 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
+
     <style>
+        .image-bg{
+            background-image: url('https://www.newegg.com/insider/wp-content/uploads/2018/04/Aorus-X370-Gaming-3-Motherboard-1-of-1-21.jpg');
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+        }
     </style>
+
 </head>
 
 <body>
-<br>
+<div class="image-bg">
 <div class="container">
     <div class="row">
-        <div class="col-12 text-center">
+        <div class="col-12 text-center" style="color:white">
             <p>Powered by PC-Configurer.pl</p>
         </div>
     </div>
 </div>
 <hr>
 
-<div class="card bg-light" style="margin-left:600px; margin-right:500px; margin-top:20px; margin-bottom:20px">
+<div class="card bg-light" style="margin-left:600px; margin-right:600px; margin-top:20px; margin-bottom:20px">
     <article class="card-body mx-auto">
         <div class="card-title mt-3 text-center">
             <h3>Zaloguj się</h3>
@@ -38,6 +52,7 @@
             <p>Jeśli nie masz jeszcze - konta kliknij przycisk  <span class="badge badge-primary">Zarejestruj</span>
         </div>
         <hr>
+        <br>
         <div class="form-group">
             <div class="col-sm-10 text-center">
                 <div class="validMessage">
@@ -63,11 +78,12 @@
             </div>
             <br>
             <button type="submit" class="btn btn-outline-success" style="margin-left:350px">Zaloguj</button>
-            <br>
+            <br><br>
             <a href ="${pageContext.request.contextPath}/register" class="btn btn-primary" style="margin-left:0px">Zarejestruj</a>
             <a href="${pageContext.request.contextPath}/ " class="btn btn-info" style="margin-left:10px;color:white"  >Strona główna</a>
+            <a href="#"> Zapomniałem hasło</a>
         </form:form>
     </article>
 </div>
-
+</div>
 </body>
